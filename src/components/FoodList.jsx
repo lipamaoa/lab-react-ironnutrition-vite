@@ -20,30 +20,33 @@ function FoodList() {
 
   const handleSearch = (searchItem) => {
     if (searchItem.trim() === "") {
-      setFoodsArray(foodsJson); 
+      setFoodsArray(foodsJson);
     } else {
       const filteredFoods = foodsJson.filter((food) =>
         food.name.toLowerCase().includes(searchItem.toLowerCase())
       );
       setFoodsArray(filteredFoods);
+    };
     }
-  };
 
   return (
     <div className="App">
       <h1>LAB | React IronNutrition</h1>
-      <Divider>Food List</Divider>
       <Search onSearch={handleSearch} />
+    <AddFoodForm addFood={addFood} />
       <Row style={{ width: "100%", justifyContent: "center" }}>
-              {foodsArray.map((food) => (
-          <FoodBox
-            key={food.id}
-            food={food}
-            deleteItems={() => deleteItems(food.id)}
-          />
-        ))}
+        {foodsArray.length === 0 ? (
+          <p>Oops! There is no more content to show.</p>
+        ) : (
+          foodsArray.map((food) => (
+            <FoodBox
+              key={food.id}
+              food={food}
+              deleteItems={() => deleteItems(food.id)}
+            />
+          ))
+        )}
       </Row>
-      <AddFoodForm addFood={addFood} />
     </div>
   );
 }

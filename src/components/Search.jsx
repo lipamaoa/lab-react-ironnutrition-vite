@@ -8,13 +8,13 @@ function Search({ onSearch }) {
 
   return (
     <div>
-      <Divider>Search</Divider>
       <label>Search</label>
       <Input
         name="search"
         type="text"
         onChange={handleSearch}
         placeholder="Search food..."
+        style={{width:"200px"}}
       />
     </div>
   );
